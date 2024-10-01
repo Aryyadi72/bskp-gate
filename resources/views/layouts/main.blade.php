@@ -5,16 +5,17 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/bridgestone_white.png') }}">
     <!--
     Document Title
     =============================================
     -->
-    <title>Titan | Multipurpose HTML5 Template</title>
+    <title>BSKP GATE | {{ $title }}</title>
     <!--
     Favicons
     =============================================
     -->
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/images/favicons/apple-icon-57x57.png') }}" />
+    {{-- <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/images/favicons/apple-icon-57x57.png') }}" />
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/images/favicons/apple-icon-60x60.png') }}" />
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/images/favicons/apple-icon-60x60.png') }}" />
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/images/favicons/apple-icon-60x60.png') }}" />
@@ -22,18 +23,20 @@
     <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/images/favicons/apple-icon-114x114.png') }}" />
     <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/images/favicons/apple-icon-114x114.png') }}" />
     <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/images/favicons/apple-icon-114x114.png') }}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicons/apple-icon-114x114.png') }}" />
-    <link rel="icon" type="image/png" sizes="192x192"
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicons/apple-icon-114x114.png') }}" /> --}}
+
+    {{-- <link rel="icon" type="image/png" sizes="192x192"
         href="{{ asset('assets/images/favicons/android-icon-192x192.png') }}" />
     <link rel="icon" type="image/png" sizes="32x32"
         href="{{ asset('assets/images/favicons/favicon-32x32.png') }}" />
     <link rel="icon" type="image/png" sizes="96x96"
         href="{{ asset('assets/images/favicons/favicon-32x32.png') }}" />
     <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('assets/images/favicons/favicon-32x32.png') }}" />
+        href="{{ asset('assets/images/favicons/favicon-32x32.png') }}" /> --}}
+
     <link rel="manifest" href="/manifest.json" />
     <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-TileImage" content="{{ asset('assets/images/favicons/ms-icon-144x144.png') }}" />
+    {{-- <meta name="msapplication-TileImage" content="{{ asset('assets/images/favicons/ms-icon-144x144.png') }}" /> --}}
     <meta name="theme-color" content="#ffffff" />
     <!--
     Stylesheets
@@ -64,7 +67,7 @@
         <div class="page-loader">
             <div class="loader">Loading...</div>
         </div>
-        <nav class="navbar navbar-custom navbar-fixed-top navbar-transparent" role="navigation">
+        {{-- <nav class="navbar navbar-custom navbar-fixed-top navbar-transparent" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse">
@@ -73,7 +76,7 @@
                         href="index.html">Titan</a>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
         @yield('content')
 

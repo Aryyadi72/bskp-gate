@@ -10,7 +10,7 @@
                                 Hello &amp; welcome
                             </div>
                             <div class="font-alt mb-40 titan-title-size-4">
-                                We are Titan
+                                BSKP GATE
                             </div>
                             <a class="section-scroll btn btn-border-w btn-round" href="{{ route('auth') }}">Sign
                                 In</a>
@@ -23,8 +23,7 @@
                     <div class="titan-caption">
                         <div class="caption-content">
                             <div class="font-alt mb-30 titan-title-size-2">
-                                Titan is creative multipurpose html template for<br />web
-                                developers who change the world
+                                Silahkan Klik Sign In untuk Melanjutkan ke Halaman Login & Register
                             </div>
                             <a class="btn btn-border-w btn-round" href="{{ route('auth') }}">Sign In</a>
                         </div>
@@ -36,10 +35,10 @@
                     <div class="titan-caption">
                         <div class="caption-content">
                             <div class="font-alt mb-30 titan-title-size-1">
-                                We build brands that build business
+                                Ikuti Petunjuk untuk Login & Register
                             </div>
                             <div class="font-alt mb-40 titan-title-size-3">
-                                We are Amazing
+                                BSKP GATE
                             </div>
                             <a class="section-scroll btn btn-border-w btn-round" href="{{ route('auth') }}">Sign
                                 In</a>

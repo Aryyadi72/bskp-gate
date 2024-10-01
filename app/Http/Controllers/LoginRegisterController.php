@@ -12,7 +12,20 @@ class LoginRegisterController extends Controller
 {
     public function index()
     {
-        return view('auth');
+        $title = 'Auth Page';
+        return view('auth.login', compact('title'));
+    }
+
+    public function register_index()
+    {
+        $title = 'Register Page';
+        return view('auth.register', compact('title'));
+    }
+
+    public function forgot_password()
+    {
+        $title = 'Forgot Password Page';
+        return view('auth.forgot-password', compact('title'));
     }
 
     public function register(Request $request)

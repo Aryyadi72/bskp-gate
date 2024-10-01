@@ -12,6 +12,9 @@ Route::get('/', function () {
 Route::get('/landing-gate', [LandingController::class, 'index'])->name('landing');
 
 Route::get('/auth', [LoginRegisterController::class, 'index'])->name('auth');
+Route::get('/register', [LoginRegisterController::class, 'register_index'])->name('register');
+Route::get('/forgot-password', [LoginRegisterController::class, 'forgot_password'])->name('forgot-password');
+
 Route::post('/register', [LoginRegisterController::class, 'register'])->name('register.submit');
 
 Route::get('/main-app', [MainAppController::class, 'index'])->name('main-app');

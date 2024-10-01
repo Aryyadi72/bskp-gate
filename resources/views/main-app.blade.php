@@ -22,8 +22,8 @@
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="gallery-item">
                             <div class="gallery-image">
-                                <a class="gallery" href="{{ asset('assets/images/bridgestone.jpg') }}"
-                                    title="Attendance Managenent"><img src="{{ asset('assets/images/bridgestone.jpg') }}"
+                                <a class="gallery" href="http://192.168.99.202/absen/public"
+                                    title="Attendance Management"><img src="{{ asset('assets/images/bridgestone.jpg') }}"
                                         alt="Gallery Image 1" />
                                     <div class="gallery-caption">
                                         <div class="gallery-icon">
@@ -37,8 +37,8 @@
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="gallery-item">
                             <div class="gallery-image">
-                                <a class="gallery" href="{{ asset('assets/images/bridgestone.jpg') }}"
-                                    title="BSKP Salary"><img src="{{ asset('assets/images/bridgestone.jpg') }}"
+                                <a class="gallery" href="http://192.168.99.202/daily-new/public"
+                                    title="BSKP Production"><img src="{{ asset('assets/images/bridgestone.jpg') }}"
                                         alt="Gallery Image 1" />
                                     <div class="gallery-caption">
                                         <div class="gallery-icon">
@@ -52,7 +52,7 @@
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="gallery-item">
                             <div class="gallery-image">
-                                <a class="gallery" href="{{ asset('assets/images/bridgestone.jpg') }}" title="BSKP MCU"><img
+                                <a class="gallery" href="http://192.168.99.202/kpi/public" title="BSKP KPI"><img
                                         src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
                                     <div class="gallery-caption">
                                         <div class="gallery-icon">
@@ -66,7 +66,7 @@
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="gallery-item">
                             <div class="gallery-image">
-                                <a class="gallery" href="{{ asset('assets/images/bridgestone.jpg') }}" title="BSKP KPI"><img
+                                <a class="gallery" href="http://192.168.99.202/zen-z-zai/public" title="BSKP Zen-z-Zai"><img
                                         src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
                                     <div class="gallery-caption">
                                         <div class="gallery-icon">
@@ -80,7 +80,7 @@
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="gallery-item">
                             <div class="gallery-image">
-                                <a class="gallery" href="{{ asset('assets/images/bridgestone.jpg') }}" title="Title 1"><img
+                                <a class="gallery" href="http://192.168.99.202/doc-app/public" title="BSKP SOP"><img
                                         src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
                                     <div class="gallery-caption">
                                         <div class="gallery-icon">
@@ -94,7 +94,7 @@
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="gallery-item">
                             <div class="gallery-image">
-                                <a class="gallery" href="{{ asset('assets/images/bridgestone.jpg') }}" title="Title 1"><img
+                                <a class="gallery" href="http://192.168.99.202/nextcloud" title="BSKP Nextcloud"><img
                                         src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
                                     <div class="gallery-caption">
                                         <div class="gallery-icon">
@@ -108,7 +108,7 @@
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="gallery-item">
                             <div class="gallery-image">
-                                <a class="gallery" href="{{ asset('assets/images/bridgestone.jpg') }}" title="Title 1"><img
+                                <a class="gallery" href="http://192.168.99.202/salary/public" title="BSKP Salary"><img
                                         src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
                                     <div class="gallery-caption">
                                         <div class="gallery-icon">
@@ -122,7 +122,7 @@
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="gallery-item">
                             <div class="gallery-image">
-                                <a class="gallery" href="{{ asset('assets/images/bridgestone.jpg') }}" title="Title 1"><img
+                                <a class="gallery" href="http://192.168.99.202/soilcondition/s/public" title="BSKP Map"><img
                                         src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
                                     <div class="gallery-caption">
                                         <div class="gallery-icon">

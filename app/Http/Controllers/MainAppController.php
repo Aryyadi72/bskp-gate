@@ -8,6 +8,7 @@ class MainAppController extends Controller
 {
     public function index()
     {
-        return view('main-app');
+        $title = 'Main App';
+        return view('main-app', compact('title'));
     }
 }
