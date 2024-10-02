@@ -33,10 +33,14 @@
                         Password?</a>
                 </div>
 
-                <button type="submit"
+                {{-- <button type="submit"
                     class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">
                     Log In
-                </button>
+                </button> --}}
+
+                <a href="{{ route('main-app') }}"
+                    class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6 text-center">Log
+                    In</a>
             </form>
 
             <hr class="my-6 border-gray-300 w-full" />

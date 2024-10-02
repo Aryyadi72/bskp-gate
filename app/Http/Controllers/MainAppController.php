@@ -9,6 +9,6 @@ class MainAppController extends Controller
     public function index()
     {
         $title = 'Main App';
-        return view('main-app', compact('title'));
+        return view('main-app-nd', compact('title'));
     }
 }
