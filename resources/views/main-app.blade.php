@@ -1,235 +1,188 @@
 @extends('layouts.main')
 @section('content')
-    <div class="main">
-        <section class="module bg-dark-60 gallery-page-header parallax-bg"
-            data-background="{{ asset('assets/images/DJI_0555-scaled-3.jpg') }}">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <h2 class="module-title font-alt">Gallery</h2>
-                        <div class="module-subtitle font-serif">
-                            A wonderful serenity has taken possession of my entire soul,
-                            like these sweet mornings of spring which I enjoy with my
-                            whole heart.
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover">
+                    <a href="http://192.168.99.202/absen/public" target="_blank">
+                        <div class="box bg-dark text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-account-multiple"></i></h1>
+                            <h6 class="text-white">Attendance Management</h6>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
-        </section>
-        <section class="module">
-            <div class="container">
-                <div class="row multi-columns-row">
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="gallery-item">
-                            <div class="gallery-image">
-                                <a class="gallery" href="http://192.168.99.202/absen/public"
-                                    title="Attendance Management"><img src="{{ asset('assets/images/bridgestone.jpg') }}"
-                                        alt="Gallery Image 1" />
-                                    <div class="gallery-caption">
-                                        <div class="gallery-icon">
-                                            <span class="icon-magnifying-glass"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover">
+                    <a href="http://192.168.99.202/daily-new/public" target="_blank">
+                        <div class="box bg-cyan text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-factory"></i></h1>
+                            <h6 class="text-white">BSKP Production</h6>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="gallery-item">
-                            <div class="gallery-image">
-                                <a class="gallery" href="http://192.168.99.202/daily-new/public"
-                                    title="BSKP Production"><img src="{{ asset('assets/images/bridgestone.jpg') }}"
-                                        alt="Gallery Image 1" />
-                                    <div class="gallery-caption">
-                                        <div class="gallery-icon">
-                                            <span class="icon-magnifying-glass"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="gallery-item">
-                            <div class="gallery-image">
-                                <a class="gallery" href="http://192.168.99.202/kpi/public" title="BSKP KPI"><img
-                                        src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
-                                    <div class="gallery-caption">
-                                        <div class="gallery-icon">
-                                            <span class="icon-magnifying-glass"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="gallery-item">
-                            <div class="gallery-image">
-                                <a class="gallery" href="http://192.168.99.202/zen-z-zai/public" title="BSKP Zen-z-Zai"><img
-                                        src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
-                                    <div class="gallery-caption">
-                                        <div class="gallery-icon">
-                                            <span class="icon-magnifying-glass"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="gallery-item">
-                            <div class="gallery-image">
-                                <a class="gallery" href="http://192.168.99.202/doc-app/public" title="BSKP SOP"><img
-                                        src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
-                                    <div class="gallery-caption">
-                                        <div class="gallery-icon">
-                                            <span class="icon-magnifying-glass"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="gallery-item">
-                            <div class="gallery-image">
-                                <a class="gallery" href="http://192.168.99.202/nextcloud" title="BSKP Nextcloud"><img
-                                        src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
-                                    <div class="gallery-caption">
-                                        <div class="gallery-icon">
-                                            <span class="icon-magnifying-glass"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="gallery-item">
-                            <div class="gallery-image">
-                                <a class="gallery" href="http://192.168.99.202/salary/public" title="BSKP Salary"><img
-                                        src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
-                                    <div class="gallery-caption">
-                                        <div class="gallery-icon">
-                                            <span class="icon-magnifying-glass"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-lg-3">
-                        <div class="gallery-item">
-                            <div class="gallery-image">
-                                <a class="gallery" href="http://192.168.99.202/soilcondition/s/public" title="BSKP Map"><img
-                                        src="{{ asset('assets/images/bridgestone.jpg') }}" alt="Gallery Image 1" />
-                                    <div class="gallery-caption">
-                                        <div class="gallery-icon">
-                                            <span class="icon-magnifying-glass"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
-        </section>
-        <div class="module-small bg-dark">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="widget">
-                            <h5 class="widget-title font-alt">About Titan</h5>
-                            <p>
-                                The languages only differ in their grammar, their
-                                pronunciation and their most common words.
-                            </p>
-                            <p>Phone: +1 234 567 89 10</p>
-                            Fax: +1 234 567 89 10
-                            <p>Email:<a href="#">somecompany@example.com</a></p>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover">
+                    <a href="http://192.168.99.202/kpi/public" target="_blank">
+                        <div class="box bg-success text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-trophy"></i></h1>
+                            <h6 class="text-white">BSKP KPI</h6>
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="widget">
-                            <h5 class="widget-title font-alt">Recent Comments</h5>
-                            <ul class="icon-list">
-                                <li>Maria on <a href="#">Designer Desk Essentials</a></li>
-                                <li>
-                                    John on <a href="#">Realistic Business Card Mockup</a>
-                                </li>
-                                <li>Andy on <a href="#">Eco bag Mockup</a></li>
-                                <li>Jack on <a href="#">Bottle Mockup</a></li>
-                                <li>Mark on <a href="#">Our trip to the Alps</a></li>
-                            </ul>
+                    </a>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover">
+                    <a href="http://192.168.99.202/zen-z-zai/public" target="_blank">
+                        <div class="box bg-danger text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-file-document"></i></h1>
+                            <h6 class="text-white">Zen-Z-Zai</h6>
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="widget">
-                            <h5 class="widget-title font-alt">Blog Categories</h5>
-                            <ul class="icon-list">
-                                <li><a href="#">Photography - 7</a></li>
-                                <li><a href="#">Web Design - 3</a></li>
-                                <li><a href="#">Illustration - 12</a></li>
-                                <li><a href="#">Marketing - 1</a></li>
-                                <li><a href="#">Wordpress - 16</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="widget">
-                            <h5 class="widget-title font-alt">Popular Posts</h5>
-                            <ul class="widget-posts">
-                                <li class="clearfix">
-                                    <div class="widget-posts-image">
-                                        <a href="#"><img src="{{ asset('assets/images/rp-1.jpg') }}"
-                                                alt="Post Thumbnail" /></a>
-                                    </div>
-                                    <div class="widget-posts-body">
-                                        <div class="widget-posts-title">
-                                            <a href="#">Designer Desk Essentials</a>
-                                        </div>
-                                        <div class="widget-posts-meta">23 january</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="widget-posts-image">
-                                        <a href="#"><img src="{{ asset('assets/images/rp-2.jpg') }}"
-                                                alt="Post Thumbnail" /></a>
-                                    </div>
-                                    <div class="widget-posts-body">
-                                        <div class="widget-posts-title">
-                                            <a href="#">Realistic Business Card Mockup</a>
-                                        </div>
-                                        <div class="widget-posts-meta">15 February</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
-        <hr class="divider-d" />
-        <footer class="footer bg-dark">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p class="copyright font-alt">
-                            &copy; 2017&nbsp;<a href="index.html">TitaN</a>, All Rights
-                            Reserved
-                        </p>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="footer-social-links">
-                            <a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
-                                    class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a
-                                href="#"><i class="fa fa-skype"></i></a>
+        <div class="row">
+            <!-- Column -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover">
+                    <a href="http://192.168.99.202/doc-app/public" target="_blank">
+                        <div class="box bg-secondary text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-clipboard-text"></i></h1>
+                            <h6 class="text-white">BSKP SOP</h6>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
-        </footer>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover">
+                    <a href="http://192.168.99.202/salary/public" target="_blank">
+                        <div class="box bg-info text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-cash-100"></i></h1>
+                            <h6 class="text-white">BSKP Salary</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover">
+                    <a href="http://192.168.99.202/soilcondition/s/public" target="_blank">
+                        <div class="box bg-warning text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-google-maps"></i></h1>
+                            <h6 class="text-white">BSKP MAP</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover">
+                    <a href="http://192.168.99.202/nextcloud" target="_blank">
+                        <div class="box bg-primary text-center">
+                            <h1 class="font-light text-white"><i class="mdi mdi-cloud-sync"></i></h1>
+                            <h6 class="text-white">Nextcloud</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- card -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title m-b-0">News Updates</h4>
+                    </div>
+                    <ul class="list-style-none">
+                        <li class="d-flex no-block card-body">
+                            <i class="fa fa-check-circle w-30px m-t-5"></i>
+                            <div>
+                                <a href="#" class="m-b-0 font-medium p-0">Lorem ipsum dolor sit, amet consectetur
+                                    adipisicing elit. Similique perferendis deserunt porro fugit fugiat aspernatur, itaque,
+                                    at beatae, iste facilis mollitia? Nemo vel libero doloribus, quam tempora porro sed
+                                    cumque!</a>
+                                <span class="text-muted">dolor sit amet, consectetur adipiscing</span>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="tetx-right">
+                                    <h5 class="text-muted m-b-0">20</h5>
+                                    <span class="text-muted font-16">Jan</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="d-flex no-block card-body border-top">
+                            <i class="fa fa-gift w-30px m-t-5"></i>
+                            <div>
+                                <a href="#" class="m-b-0 font-medium p-0">Congratulation Maruti, Happy
+                                    Birthday</a>
+                                <span class="text-muted">many many happy returns of the day</span>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="tetx-right">
+                                    <h5 class="text-muted m-b-0">11</h5>
+                                    <span class="text-muted font-16">Jan</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="d-flex no-block card-body border-top">
+                            <i class="fa fa-plus w-30px m-t-5"></i>
+                            <div>
+                                <a href="#" class="m-b-0 font-medium p-0">Maruti is a Responsive Admin
+                                    theme</a>
+                                <span class="text-muted">But already everything was solved. It will ...</span>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="tetx-right">
+                                    <h5 class="text-muted m-b-0">19</h5>
+                                    <span class="text-muted font-16">Jan</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="d-flex no-block card-body border-top">
+                            <i class="fa fa-leaf w-30px m-t-5"></i>
+                            <div>
+                                <a href="#" class="m-b-0 font-medium p-0">Envato approved Maruti Admin
+                                    template</a>
+                                <span class="text-muted">i am very happy to approved by TF</span>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="tetx-right">
+                                    <h5 class="text-muted m-b-0">20</h5>
+                                    <span class="text-muted font-16">Jan</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
     </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
 @endsection
