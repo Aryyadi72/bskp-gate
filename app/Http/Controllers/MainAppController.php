@@ -10,7 +10,7 @@ class MainAppController extends Controller
     public function index()
     {
         $title = 'Main App';
-        $links = AppLink::all();
+        $links = AppLink::all()->sortBy('name');
         return view('main-app', compact('title', 'links'));
     }
 }

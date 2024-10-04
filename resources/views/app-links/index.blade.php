@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+    @include('sweetalert::alert')
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -16,6 +17,7 @@
                                         <th>No</th>
                                         <th>Nama Aplikasi</th>
                                         <th>URL</th>
+                                        <th>Slug</th>
                                         <th>Opt</th>
                                     </tr>
                                 </thead>
@@ -25,6 +27,7 @@
                                             <td class="text-center">{{ $index + 1 }}</td>
                                             <td>{{ $link->name }}</td>
                                             <td>{{ $link->url }}</td>
+                                            <td>{{ $link->slug }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
                                                     data-target="#Modal-edit-{{ $link->id }}"><i
@@ -33,9 +36,6 @@
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                     data-target="#Modal-delete-{{ $link->id }}"><i
                                                         class="mdi mdi-delete-forever"></i> Hapus</button>
-
-                                                {{-- <button type="button" class="btn btn-dark btn-sm"><i
-                                                        class="mdi mdi-open-in-new"></i> Akses</button> --}}
 
                                                 <a href="{{ $link->url }}" target="_blank" class="btn btn-dark btn-sm"><i
                                                         class="mdi mdi-open-in-new"></i> Akses</a>
@@ -70,6 +70,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
+
                                         <div class="form-group row">
                                             <label for="fname"
                                                 class="col-sm-3 text-left control-label col-form-label">Apps
@@ -79,6 +80,7 @@
                                                     placeholder="First Name Here">
                                             </div>
                                         </div>
+
                                         <div class="form-group row">
                                             <label for="lname"
                                                 class="col-sm-3 text-left control-label col-form-label">URL</label>
@@ -87,6 +89,68 @@
                                                     placeholder="Last Name Here">
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <label for="lname"
+                                                class="col-sm-3 text-left control-label col-form-label">Color</label>
+                                            <div class="col-sm-9">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="danger"
+                                                        name="color" value="danger" required>
+                                                    <label class="custom-control-label" for="danger">Red</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        id="customControlValidation2" name="color" value="success"
+                                                        required>
+                                                    <label class="custom-control-label"
+                                                        for="customControlValidation2">Green</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        id="customControlValidation3" name="color" value="cyan"
+                                                        required>
+                                                    <label class="custom-control-label"
+                                                        for="customControlValidation3">Blue</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        id="customControlValidation1" name="color" value="warning"
+                                                        required>
+                                                    <label class="custom-control-label"
+                                                        for="customControlValidation1">Yellow</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        id="customControlValidation2" name="color" value="primary"
+                                                        required>
+                                                    <label class="custom-control-label"
+                                                        for="customControlValidation2">Purple</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        id="customControlValidation3" name="color" value="secondary"
+                                                        required>
+                                                    <label class="custom-control-label"
+                                                        for="customControlValidation3">Gray</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        id="customControlValidation3" name="color" value="info"
+                                                        required>
+                                                    <label class="custom-control-label"
+                                                        for="customControlValidation3">Navy</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        id="customControlValidation3" name="color" value="dark"
+                                                        required>
+                                                    <label class="custom-control-label"
+                                                        for="customControlValidation3">Black</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -121,6 +185,7 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
+
                                             <div class="form-group row">
                                                 <label for="fname"
                                                     class="col-sm-3 text-left control-label col-form-label">Apps
@@ -130,12 +195,82 @@
                                                         name="name" value="{{ $link->name }}">
                                                 </div>
                                             </div>
+
                                             <div class="form-group row">
                                                 <label for="lname"
                                                     class="col-sm-3 text-left control-label col-form-label">URL</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" id="lname"
                                                         name="url" value="{{ $link->url }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="lname"
+                                                    class="col-sm-3 text-left control-label col-form-label">Color</label>
+                                                <div class="col-sm-9">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="color-danger-{{ $link->id }}" name="color"
+                                                            value="danger"
+                                                            {{ $link->color == 'danger' ? 'checked' : '' }}>
+                                                        <label class="custom-control-label"
+                                                            for="color-danger-{{ $link->id }}">Red</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="color-success-{{ $link->id }}" name="color"
+                                                            value="success"
+                                                            {{ $link->color == 'success' ? 'checked' : '' }}>
+                                                        <label class="custom-control-label"
+                                                            for="color-success-{{ $link->id }}">Green</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="color-cyan-{{ $link->id }}" name="color"
+                                                            value="cyan" {{ $link->color == 'cyan' ? 'checked' : '' }}>
+                                                        <label class="custom-control-label"
+                                                            for="color-cyan-{{ $link->id }}">Blue</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="color-warning-{{ $link->id }}" name="color"
+                                                            value="warning"
+                                                            {{ $link->color == 'warning' ? 'checked' : '' }}>
+                                                        <label class="custom-control-label"
+                                                            for="color-warning-{{ $link->id }}">Yellow</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="color-primary-{{ $link->id }}" name="color"
+                                                            value="primary"
+                                                            {{ $link->color == 'primary' ? 'checked' : '' }}>
+                                                        <label class="custom-control-label"
+                                                            for="color-primary-{{ $link->id }}">Purple</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="color-secondary-{{ $link->id }}" name="color"
+                                                            value="secondary"
+                                                            {{ $link->color == 'secondary' ? 'checked' : '' }}>
+                                                        <label class="custom-control-label"
+                                                            for="color-secondary-{{ $link->id }}">Gray</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="color-info-{{ $link->id }}" name="color"
+                                                            value="info" {{ $link->color == 'info' ? 'checked' : '' }}>
+                                                        <label class="custom-control-label"
+                                                            for="color-info-{{ $link->id }}">Navy</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="color-dark-{{ $link->id }}" name="color"
+                                                            value="dark"
+                                                            {{ $link->color == 'dark' || is_null($link->color) ? 'checked' : '' }}>
+                                                        <label class="custom-control-label"
+                                                            for="color-dark-{{ $link->id }}">Black</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

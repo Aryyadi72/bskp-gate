@@ -15,16 +15,17 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                        aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="{{ route('main-app') }}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
                             class="hide-menu">Dashboard</span></a></li>
 
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                         href="{{ route('app-index') }}" aria-expanded="false"><i class="mdi mdi-apps"></i><span
                             class="hide-menu">App</span></a></li>
 
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                        aria-expanded="false"><i class="mdi mdi-logout"></i><span class="hide-menu">Logout</span></a>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="{{ route('auth') }}" aria-expanded="false"><i class="mdi mdi-logout"></i><span
+                            class="hide-menu">Logout</span></a>
                 </li>
             </ul>
         </nav>

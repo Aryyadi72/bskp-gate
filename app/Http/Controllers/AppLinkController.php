@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AppLink;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AppLinkController extends Controller
@@ -20,11 +21,26 @@ class AppLinkController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'url' => 'required|url',
+            'color' => 'string|max:225'
         ]);
 
-        AppLink::create($request->all());
+        $slug = Str::slug($request->get('name'), '-');
 
-        return redirect()->route('app-index')->with('success', 'Link berhasil ditambahkan.');
+        $data = $request->all();
+
+        $data['slug'] = $slug;
+
+        $appSave = AppLink::create($data);
+
+        if ($appSave) {
+            Alert::success('Success!', 'Your Post as been submited!');
+            return redirect()->route('app-index');
+        } else {
+            Alert::error('Error!', 'Your Post as been submited!');
+            return redirect()->route('app-index');
+        }
+
+        // return redirect()->route('app-index')->with('success', 'Link berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)
@@ -32,22 +48,40 @@ class AppLinkController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'url' => 'required|url',
+            'color' => 'nullable|string|max:225'
         ]);
 
-        $data = AppLink::find($id);
+        $dataApp = AppLink::find($id);
 
-        $data->update([
+        $slug = Str::slug($request->get('name'), '-');
+
+        if ($dataApp->update([
             'name' => $request->name,
             'url' => $request->url,
-        ]);
-
-        if ($data) {
-            Alert::success('Success!', 'Data bibit masuk berhasil diperbarui.');
+            'slug' => $slug,
+            'color' => $request->color,
+        ])) {
+            Alert::success('Success!', 'Your Post has been edited!');
             return redirect()->route('app-index');
         } else {
-            Alert::error('Error!', 'Data bibit masuk gagal diperbarui.');
+            Alert::error('Error!', 'Failed to edit your Post!');
             return redirect()->route('app-index');
         }
+
+        // $appUp = $dataApp->update([
+        //     'name' => $request->name,
+        //     'url' => $request->url,
+        //     'slug' => $slug,
+        //     'color' => $request->color,
+        // ]);
+
+        // if ($appUp) {
+        //     Alert::success('Success!', 'Your Post as been edited!');
+        //     return redirect()->route('app-index');
+        // } else {
+        //     Alert::error('Error!', 'Your Post as been edited!');
+        //     return redirect()->route('app-index');
+        // }
     }
 
     public function destroy($id)

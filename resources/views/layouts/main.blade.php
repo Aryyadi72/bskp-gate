@@ -32,6 +32,7 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
+    @include('sweetalert::alert')
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
@@ -262,6 +263,7 @@
     <script src="{{ asset('assets-main/assets/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
     <script src="{{ asset('assets-main/assets/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
     <script src="{{ asset('assets-main/assets/extra-libs/DataTables/datatables.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         /****************************************
          *       Basic Table                   *

@@ -11,6 +11,8 @@ class AppLink extends Model
 
     protected $fillable = [
         'name',
-        'url'
+        'url',
+        'slug',
+        'color'
     ];
 }

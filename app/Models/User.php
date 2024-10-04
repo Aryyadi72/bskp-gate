@@ -17,7 +17,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'nik',
         'name',
+        'status',
+        'dept',
+        'jabatan',
         'email',
         'password',
     ];
@@ -43,5 +47,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function loginActivities()
+    {
+        return $this->hasMany(LogActivity::class);
     }
 }
