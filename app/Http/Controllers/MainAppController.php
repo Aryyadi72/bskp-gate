@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AppLink;
 
 class MainAppController extends Controller
 {
     public function index()
     {
         $title = 'Main App';
-        return view('main-app-nd', compact('title'));
+        $links = AppLink::all()->sortBy('name');
+        return view('main-app', compact('title', 'links'));
     }
 }

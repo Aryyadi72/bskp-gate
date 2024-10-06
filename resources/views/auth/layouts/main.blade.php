@@ -11,11 +11,13 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <section class="flex flex-col md:flex-row h-screen items-center">
 
         @yield('content')
 
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

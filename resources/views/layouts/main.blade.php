@@ -15,6 +15,10 @@
     <!-- Custom CSS -->
     <link href="{{ asset('assets-main/assets/libs/fullcalendar/dist/fullcalendar.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets-main/assets/extra-libs/calendar/calendar.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('assets-main/assets/extra-libs/multicheck/multicheck.css') }}">
+    <link href="{{ asset('assets-main/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}"
+        rel="stylesheet">
     <link href="{{ asset('assets-main/dist/css/style.min.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,6 +32,7 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
+    @include('sweetalert::alert')
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
@@ -55,18 +60,18 @@
                         <b class="logo-icon p-l-10">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="{{ asset('assets-main/assets/images/Proyek_Baru.png') }}" alt="homepage"
-                                height="24" width="178" class="light-logo" />
+                            <img src="{{ asset('assets-main/assets/images/proyek-baru-lagi.png') }}" alt="homepage"
+                                width="168" style="padding-top: 20px" class="light-logo" />
 
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span class="logo-text">
+                        {{-- <span class="logo-text">
                             <!-- dark Logo text -->
                             <img src="{{ asset('assets-main/assets/images/Proyek_Baru.png') }}" alt="homepage"
                                 height="24" width="178" class="light-logo" />
 
-                        </span>
+                        </span> --}}
                         <!-- Logo icon -->
                         <!-- <b class="logo-icon"> -->
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -255,7 +260,16 @@
     <script src="{{ asset('assets-main/assets/libs/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('assets-main/assets/libs/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('assets-main/dist/js/pages/calendar/cal-init.js') }}"></script>
-
+    <script src="{{ asset('assets-main/assets/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
+    <script src="{{ asset('assets-main/assets/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
+    <script src="{{ asset('assets-main/assets/extra-libs/DataTables/datatables.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable();
+    </script>
 </body>
 
 </html>
