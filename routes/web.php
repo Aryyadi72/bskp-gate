@@ -7,9 +7,9 @@ use App\Http\Controllers\MainAppController;
 use App\Http\Controllers\AppLinkController;
 use App\Http\Controllers\ActivityLogController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::group(['middleware' => 'guest'], function () {
     // Register
@@ -44,3 +44,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('/forgot-password', [LoginRegisterController::class, 'forgot_password'])->name('forgot-password');
+Route::post('/forgot-password', [LoginRegisterController::class, 'forgot_password_link'])->name('forgot-password-link');
+Route::get('/reset-password/{token}', [LoginRegisterController::class, 'reset_password'])->name('password.reset');
+Route::post('/reset-password', [LoginRegisterController::class, 'reset_password_update'])->name('reset-password-update');

@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('log_activities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('nik');
             $table->string('ip_address');
             $table->string('otp_code');
             $table->string('otp_encrypt');
-            $table->string('otp_valid_start');
-            $table->string('otp_valid_until');
+            $table->timestamp('otp_valid_start');
+            $table->timestamp('otp_valid_until');
+            $table->timestamp('otp_verified_at');
             $table->timestamp('login_at');
             $table->timestamp('logout_at');
             $table->timestamps();

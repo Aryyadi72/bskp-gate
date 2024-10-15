@@ -12,15 +12,16 @@
                 Reset Password
             </h1>
 
-            <form class="mt-6" action="#" method="POST">
+            <form class="mt-6" action="{{ route('forgot-password-link') }}" method="POST">
+                @csrf
                 <div>
                     <label class="block text-gray-700">Email Address</label>
-                    <input type="email" name="" id="" placeholder="Enter Email Address"
+                    <input type="email" name="email" id="" placeholder="Enter Email Address"
                         class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                         autofocus autocomplete required />
                 </div>
 
-                <div class="mt-4">
+                {{-- <div class="mt-4">
                     <label class="block text-gray-700">Password</label>
                     <input type="password" name="" id="" placeholder="Enter Password" minlength="6"
                         class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
@@ -32,7 +33,7 @@
                     <input type="password" name="" id="" placeholder="Enter Password" minlength="6"
                         class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                         required />
-                </div>
+                </div> --}}
 
                 <button type="submit"
                     class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">

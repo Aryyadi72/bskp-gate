@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('activity_log_id')->constrained('log_activities')->onDelete('cascade');
             $table->string('accessing_app');
-            $table->string('accessing_at');
-            $table->string('accessing_until');
+            $table->timestamp('accessing_at');
+            $table->timestamp('accessing_until');
             $table->timestamps();
         });
     }
