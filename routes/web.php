@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginRegisterController;
@@ -41,6 +42,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Log Activiy Module
     Route::get('/log-index', [ActivityLogController::class, 'index'])->name('log-index');
+
+    // User Account Module
+    Route::get('/user-account', [UserController::class, 'index'])->name('user-index');
+    Route::get('/user-account-add', [UserController::class, 'create'])->name('user-create');
+    Route::post('/user-account-add', [UserController::class, 'store'])->name('user-store');
 });
 
 Route::get('/forgot-password', [LoginRegisterController::class, 'forgot_password'])->name('forgot-password');
