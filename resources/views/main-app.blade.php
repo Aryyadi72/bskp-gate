@@ -1,5 +1,18 @@
 @extends('layouts.main')
 @section('content')
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Selamat Datang, <span class="text-info">{{ auth()->user()->name }}</span>
+                </h4>
+                <div class="ml-auto text-right">
+                    <div id="time">
+                        {{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ============================================================== -->
     <!-- Container fluid  -->
     <!-- ============================================================== -->

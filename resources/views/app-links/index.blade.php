@@ -1,15 +1,24 @@
 @extends('layouts.main')
 @section('content')
     @include('sweetalert::alert')
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h3 class="page-title">{{ $title }}</span>
+                </h3>
+                <div class="ml-auto text-right">
+                    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#Modal2"><i
+                            class="mdi mdi-library-plus"></i>
+                        Tambah</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body">
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Modal2"><i
-                                class="mdi mdi-library-plus"></i>
-                            Tambah</button>
-                        <br><br>
+                    <div class="my-3">
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
@@ -45,7 +54,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>

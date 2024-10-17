@@ -52,57 +52,61 @@ class LoginRegisterController extends Controller
             'password' => 'required',
         ]);
 
-        // Autentikasi pengguna
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
 
-            // Cek apakah ada OTP yang masih valid dan sudah diverifikasi
             $activeLogin = LogActivity::where('nik', $user->nik)
                 ->where('otp_valid_until', '>', now())
-                ->whereNotNull('login_at') // OTP sudah diverifikasi
-                ->whereNotNull('otp_verified_at')    // Belum logout
+                ->whereNotNull('login_at')
+                ->whereNotNull('otp_verified_at')
                 ->latest()
                 ->first();
 
             if ($activeLogin) {
-                // OTP masih valid dan sudah diverifikasi, langsung masuk ke dashboard
-                $ipAddress = $request->ip(); // Mendapatkan IP address pengguna
+                $ipAddress = $request->ip();
                 Mail::to($user->email)->send(new ActiveLoginNotification($user->nik, $user->email, now(), $ipAddress));
                 Alert::success('Success!', 'Login Berhasil!!!');
                 return redirect()->route('main-app');
             }
 
-            // Cek apakah ada OTP yang masih valid tapi belum diverifikasi
             $pendingOtp = LogActivity::where('nik', $user->nik)
                 ->where('otp_valid_until', '>', now())
-                ->whereNull('otp_verified_at') // OTP belum diverifikasi
+                ->whereNull('otp_verified_at')
                 ->latest()
                 ->first();
 
             if ($pendingOtp) {
-                // OTP masih valid dan belum diverifikasi, kirim ulang OTP
                 Mail::to($user->email)->send(new OTPMail($pendingOtp->otp_code));
 
                 Alert::Info('Success!', 'OTP telah dikirim ulang ke email Anda.');
                 return redirect()->route('otp-verify');
             }
 
-            $otp = $this->otpService->generateOTP(); // Membuat OTP
-            $otpEncrypted = $this->otpService->hashOTP($otp); // Meng-hash OTP
+            $otp = $this->otpService->generateOTP();
+            $otpEncrypted = $this->otpService->hashOTP($otp);
+            $getUserData = User::where('nik', $user->nik)->first();
 
-            // Menyimpan aktivitas login di database
             $loginActivity = LogActivity::create([
                 'user_id' => $user->id,
                 'nik' => $user->nik,
                 'ip_address' => $request->ip(),
-                'otp_code' => $otp, // Ini optional, untuk keperluan kirim email
+                'otp_code' => $otp,
                 'otp_encrypt' => $otpEncrypted,
                 'otp_valid_start' => now(),
-                'otp_valid_until' => now()->addMinutes(10), // Misalnya OTP valid selama 10 menit
+                'otp_valid_until' => now()->addMinutes(1),
+                // 'otp_valid_until' => now()->addDays(1),
             ]);
 
-            // Kirim OTP ke email pengguna
-            Mail::to($user->email)->send(new OTPMail($otp));
+            $data = [
+                'otp_code' => $otp,
+                'nik' => $getUserData->nik,
+                'name' => $getUserData->name,
+                'email' => $getUserData->email,
+                'otp_valid_until' => now()->addMinutes(1)->format('d-m-Y H:i'),
+                // 'otp_valid_until' => now()->addDays(1)->format('d-m-Y H:i'),
+            ];
+
+            Mail::to($user->email)->send(new OTPMail($data));
 
             Alert::Success('Success!', 'OTP telah dikirim email Anda.');
             return redirect()->route('otp-verify');

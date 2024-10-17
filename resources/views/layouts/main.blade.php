@@ -208,18 +208,20 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            <div class="page-breadcrumb">
+            {{-- <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
                         <h4 class="page-title">Selamat Datang, <span
                                 class="text-info">{{ auth()->user()->name }}</span>
                         </h4>
                         <div class="ml-auto text-right">
-                            <p>16:20 / 02 Oktober 2024</p>
+                            <div id="time">
+                                {{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }} WITA
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -274,6 +276,15 @@
          *       Basic Table                   *
          ****************************************/
         $('#zero_config').DataTable();
+    </script>
+    <script>
+        function updateTime() {
+            const timeElement = document.getElementById('time');
+            const currentTime = new Date();
+            timeElement.innerHTML = currentTime.toLocaleString(); // Menampilkan waktu dengan format lokal
+        }
+
+        setInterval(updateTime, 1000); // Memperbarui setiap 1 detik (1000 ms)
     </script>
 </body>
 

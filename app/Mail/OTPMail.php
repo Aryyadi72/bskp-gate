@@ -13,19 +13,20 @@ class OTPMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $otp;
+    public $data;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($otp)
+    public function __construct($data)
     {
-        $this->otp = $otp;
+        $this->data = $data;
     }
 
     public function build()
     {
-        return $this->view('emails.otp')->with('otp', $this->otp);
+        return $this->view('emails.otp')->with('data', $this->data)
+            ->subject('Your OTP Code');
     }
 
     /**
