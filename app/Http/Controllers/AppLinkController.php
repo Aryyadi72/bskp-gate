@@ -25,22 +25,17 @@ class AppLinkController extends Controller
         ]);
 
         $slug = Str::slug($request->get('name'), '-');
-
         $data = $request->all();
-
         $data['slug'] = $slug;
-
         $appSave = AppLink::create($data);
 
         if ($appSave) {
-            Alert::success('Success!', 'Your Post as been submited!');
+            toastr()->closeOnHover(true)->closeDuration(10)->success('Your Post as been submited!');
             return redirect()->route('app-index');
         } else {
-            Alert::error('Error!', 'Your Post as been submited!');
+            toastr()->closeOnHover(true)->closeDuration(10)->error('Your Post not submited!');
             return redirect()->route('app-index');
         }
-
-        // return redirect()->route('app-index')->with('success', 'Link berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)
@@ -52,7 +47,6 @@ class AppLinkController extends Controller
         ]);
 
         $dataApp = AppLink::find($id);
-
         $slug = Str::slug($request->get('name'), '-');
 
         if ($dataApp->update([
@@ -61,27 +55,12 @@ class AppLinkController extends Controller
             'slug' => $slug,
             'color' => $request->color,
         ])) {
-            Alert::success('Success!', 'Your Post has been edited!');
+            toastr()->closeOnHover(true)->closeDuration(10)->success('Your Post as been edited!');
             return redirect()->route('app-index');
         } else {
-            Alert::error('Error!', 'Failed to edit your Post!');
+            toastr()->closeOnHover(true)->closeDuration(10)->error('Failed to edit your Post');
             return redirect()->route('app-index');
         }
-
-        // $appUp = $dataApp->update([
-        //     'name' => $request->name,
-        //     'url' => $request->url,
-        //     'slug' => $slug,
-        //     'color' => $request->color,
-        // ]);
-
-        // if ($appUp) {
-        //     Alert::success('Success!', 'Your Post as been edited!');
-        //     return redirect()->route('app-index');
-        // } else {
-        //     Alert::error('Error!', 'Your Post as been edited!');
-        //     return redirect()->route('app-index');
-        // }
     }
 
     public function destroy($id)
@@ -91,10 +70,10 @@ class AppLinkController extends Controller
         $appDel = $data->delete();
 
         if ($appDel) {
-            Alert::success('Success!', 'Data bibit masuk berhasil dihapus.');
+            toastr()->closeOnHover(true)->closeDuration(10)->success('Your Post as been deleted!');
             return redirect()->route('app-index');
         } else {
-            Alert::error('Error!', 'Data bibit masuk gagal dihapus.');
+            toastr()->closeOnHover(true)->closeDuration(10)->error('Failed to delete your Post');
             return redirect()->route('app-index');
         }
     }

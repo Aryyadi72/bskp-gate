@@ -64,8 +64,8 @@ class LoginRegisterController extends Controller
 
             if ($activeLogin) {
                 $ipAddress = $request->ip();
-                Mail::to($user->email)->send(new ActiveLoginNotification($user->nik, $user->email, now(), $ipAddress));
-                Alert::success('Success!', 'Login Berhasil!!!');
+                Mail::to($user->email)->send(new ActiveLoginNotification($user->nik, $user->email, now(), $ipAddress, $user->name));
+                toastr()->closeOnHover(true)->closeDuration(10)->success('Login Berhasil!!!');
                 return redirect()->route('main-app');
             }
 
@@ -78,7 +78,7 @@ class LoginRegisterController extends Controller
             if ($pendingOtp) {
                 Mail::to($user->email)->send(new OTPMail($pendingOtp->otp_code));
 
-                Alert::Info('Success!', 'OTP telah dikirim ulang ke email Anda.');
+                toastr()->closeOnHover(true)->closeDuration(10)->info('OTP telah dikirim ulang ke email Anda.');
                 return redirect()->route('otp-verify');
             }
 
@@ -93,8 +93,8 @@ class LoginRegisterController extends Controller
                 'otp_code' => $otp,
                 'otp_encrypt' => $otpEncrypted,
                 'otp_valid_start' => now(),
-                'otp_valid_until' => now()->addMinutes(1),
-                // 'otp_valid_until' => now()->addDays(1),
+                // 'otp_valid_until' => now()->addMinutes(1),
+                'otp_valid_until' => now()->addDays(1),
             ]);
 
             $data = [
@@ -102,16 +102,17 @@ class LoginRegisterController extends Controller
                 'nik' => $getUserData->nik,
                 'name' => $getUserData->name,
                 'email' => $getUserData->email,
-                'otp_valid_until' => now()->addMinutes(1)->format('d-m-Y H:i'),
-                // 'otp_valid_until' => now()->addDays(1)->format('d-m-Y H:i'),
+                // 'otp_valid_until' => now()->addMinutes(1)->format('d-m-Y H:i'),
+                'otp_valid_until' => now()->addDays(1)->format('d-m-Y H:i'),
             ];
 
             Mail::to($user->email)->send(new OTPMail($data));
 
-            Alert::Success('Success!', 'OTP telah dikirim email Anda.');
+            toastr()->closeOnHover(true)->closeDuration(10)->success('OTP telah dikirim email Anda.');
             return redirect()->route('otp-verify');
         }
 
+        toastr()->closeOnHover(true)->closeDuration(10)->error('Silahkan isi Email & Password dengan benar.');
         return back()->withErrors(['email' => 'Invalid credentials.']);
     }
 
@@ -158,7 +159,7 @@ class LoginRegisterController extends Controller
         }
 
         Auth::logout();
-        Alert::success('Success!', 'Your Post as been submited!');
+        toastr()->closeOnHover(true)->closeDuration(10)->success('Anda telah berhasil logout.');
         return redirect()->route('auth');
     }
 

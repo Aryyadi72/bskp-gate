@@ -17,16 +17,18 @@ class ActiveLoginNotification extends Mailable
     public $email;
     public $currentTime;
     public $ipAddress;
+    public $name;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($nik, $email, $currentTime, $ipAddress)
+    public function __construct($nik, $email, $currentTime, $ipAddress, $name)
     {
         $this->nik = $nik;
         $this->email = $email;
         $this->currentTime = $currentTime;
         $this->ipAddress = $ipAddress;
+        $this->name = $name;
     }
 
     public function build()
@@ -38,6 +40,7 @@ class ActiveLoginNotification extends Mailable
                 'email' => $this->email,
                 'currentTime' => $this->currentTime,
                 'ipAddress' => $this->ipAddress,
+                'name' => $this->name,
             ]);
     }
 
