@@ -20,11 +20,15 @@
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
+        @php
+            $token = request()->query('token');
+        @endphp
         <div class="row">
             @foreach ($links as $link)
                 <div class="col-md-6 col-lg-3">
                     <div class="card card-hover">
-                        <a href="{{ $link->url }}" target="_blank" title="{{ $link->slug }}">
+                        <a href="{{ $link->url }}?token={{ session('jwt_token') }}" target="_blank"
+                            title="{{ $link->slug }}">
                             <div class="box bg-{{ $link->color ?? 'dark' }} text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-apps"></i></h1>
                                 <h6 class="text-white">{{ $link->name }}</h6>

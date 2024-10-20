@@ -7,9 +7,12 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.9",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "nesbot/carbon": "^3.8",
+        "php-open-source-saver/jwt-auth": "^2.3",
         "realrashid/sweet-alert": "^7.2",
+        "tymon/jwt-auth": "^2.1",
         "yoeunes/toastr": "^3.0"
     },
     "require-dev": {

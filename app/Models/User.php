@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\ResetPasswordNotification;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+// use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
@@ -50,6 +52,20 @@ class User extends Authenticatable
         ];
     }
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        $roles = $this->roleAppUser()->pluck('role')->toArray();
+
+        return [
+            'roles' => $roles,
+        ];
+    }
+
     public function loginActivities()
     {
         return $this->hasMany(LogActivity::class);
@@ -59,4 +75,9 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function roleAppUser()
+{
+    return $this->hasMany(RoleApp::class);
+}
 }

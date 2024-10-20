@@ -15,4 +15,9 @@ class AppLink extends Model
         'slug',
         'color'
     ];
+
+    public function roleAppApp()
+    {
+        return $this->hasMany(RoleApp::class);
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoleAppController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
@@ -22,6 +23,21 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/login', [LoginRegisterController::class, 'login'])->name('login');
 });
 
+Route::group(['middleware' => ['jwt.auth']], function() {
+    // Rute yang dilindungi oleh token JWT
+    Route::get('/main-app', [MainAppController::class, 'index'])->name('main-app');
+
+    Route::get('/app-index', [AppLinkController::class, 'index'])->name('app-index');
+    Route::post('/app-store', [AppLinkController::class, 'store'])->name('app-store');
+    Route::put('/app-update/{id}', [AppLinkController::class, 'update'])->name('app-update');
+    Route::delete('/app-delete/{id}', [AppLinkController::class, 'destroy'])->name('app-delete');
+
+    Route::get('/role-app-index', [RoleAppController::class, 'index'])->name('role-app-index');
+    Route::post('/role-app-store', [RoleAppController::class, 'store'])->name('role-app-store');
+    Route::put('/role-app-update/{id}', [RoleAppController::class, 'update'])->name('role-app-update');
+    Route::delete('/role-app-delete/{id}', [RoleAppController::class, 'destroy'])->name('role-app-delete');
+});
+
 Route::group(['middleware' => 'auth'], function () {
 
     // Verify Process
@@ -32,13 +48,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/logout', [LoginRegisterController::class, 'logout'])->name('logout');
 
     // Dashboard
-    Route::get('/main-app', [MainAppController::class, 'index'])->name('main-app');
+    // Route::get('/main-app', [MainAppController::class, 'index'])->name('main-app');
 
     // App Module
-    Route::get('/app-index', [AppLinkController::class, 'index'])->name('app-index');
-    Route::post('/app-store', [AppLinkController::class, 'store'])->name('app-store');
-    Route::put('/app-update/{id}', [AppLinkController::class, 'update'])->name('app-update');
-    Route::delete('/app-delete/{id}', [AppLinkController::class, 'destroy'])->name('app-delete');
+    // Route::get('/app-index', [AppLinkController::class, 'index'])->name('app-index');
+    // Route::post('/app-store', [AppLinkController::class, 'store'])->name('app-store');
+    // Route::put('/app-update/{id}', [AppLinkController::class, 'update'])->name('app-update');
+    // Route::delete('/app-delete/{id}', [AppLinkController::class, 'destroy'])->name('app-delete');
 
     // Log Activiy Module
     Route::get('/log-index', [ActivityLogController::class, 'index'])->name('log-index');

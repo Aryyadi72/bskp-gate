@@ -24,6 +24,8 @@ use Carbon\Carbon;
 
 use App\Services\OtpService;
 
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 class LoginRegisterController extends Controller
 {
     protected $otpService;
@@ -93,8 +95,8 @@ class LoginRegisterController extends Controller
                 'otp_code' => $otp,
                 'otp_encrypt' => $otpEncrypted,
                 'otp_valid_start' => now(),
-                // 'otp_valid_until' => now()->addMinutes(1),
-                'otp_valid_until' => now()->addDays(1),
+                'otp_valid_until' => now()->addMinutes(1),
+                // 'otp_valid_until' => now()->addDays(1),
             ]);
 
             $data = [
@@ -102,8 +104,8 @@ class LoginRegisterController extends Controller
                 'nik' => $getUserData->nik,
                 'name' => $getUserData->name,
                 'email' => $getUserData->email,
-                // 'otp_valid_until' => now()->addMinutes(1)->format('d-m-Y H:i'),
-                'otp_valid_until' => now()->addDays(1)->format('d-m-Y H:i'),
+                'otp_valid_until' => now()->addMinutes(1)->format('d-m-Y H:i'),
+                // 'otp_valid_until' => now()->addDays(1)->format('d-m-Y H:i'),
             ];
 
             Mail::to($user->email)->send(new OTPMail($data));
@@ -130,13 +132,22 @@ class LoginRegisterController extends Controller
             ->first();
 
         if ($loginActivity && now()->lt($loginActivity->otp_valid_until)) {
-            // Verifikasi OTP
             if (Hash::check($request->otp, $loginActivity->otp_encrypt)) {
                 $loginActivity->update([
                     'login_at' => now(),
                     'otp_verified_at' => now(),
-                ]); // Menyimpan waktu login
-                return redirect()->route('main-app');
+                ]);
+
+                $token = JWTAuth::fromUser(Auth::user());
+
+                $request->session()->put('jwt_token', $token);
+
+                // Jika menggunakan route ini tidak error
+                return redirect()->route('main-app', ['token' => $token]);
+
+                // Sebalikya jika menggunakan route ini terjadi 401
+                // return redirect()->route('main-app')->with(['token' => $token, 'message' => 'OTP verified successfully.']);
+
             } else {
                 return back()->withErrors(['otp' => 'OTP is incorrect.']);
             }

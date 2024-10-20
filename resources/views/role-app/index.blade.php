@@ -24,30 +24,34 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Aplikasi</th>
-                                        <th>URL</th>
-                                        <th>Slug</th>
+                                        <th>NIK</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Aplikasi</th>
+                                        <th>Role</th>
                                         <th>Opt</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($links as $index => $link)
+                                    @foreach ($roles as $index => $role)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
-                                            <td>{{ $link->name }}</td>
-                                            <td>{{ $link->url }}</td>
-                                            <td>{{ $link->slug }}</td>
+                                            <td>{{ $role->nik }}</td>
+                                            <td>{{ $role->name }}</td>
+                                            <td>{{ $role->email }}</td>
+                                            <td>{{ $role->appname }}</td>
+                                            <td>{{ $role->role }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                                    data-target="#Modal-edit-{{ $link->id }}"><i
+                                                    data-target="#Modal-edit-{{ $role->roleid }}"><i
                                                         class="mdi mdi-table-edit"></i> Ubah</button>
 
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                    data-target="#Modal-delete-{{ $link->id }}"><i
+                                                    data-target="#Modal-delete-{{ $role->roleid }}"><i
                                                         class="mdi mdi-delete-forever"></i> Hapus</button>
 
-                                                <a href="{{ $link->url }}" target="_blank" class="btn btn-dark btn-sm"><i
-                                                        class="mdi mdi-open-in-new"></i> Akses</a>
+                                                {{-- <a href="{{ $roleurl }}" target="_blank" class="btn btn-dark btn-sm"><i
+                                                        class="mdi mdi-open-in-new"></i> Akses</a> --}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -64,7 +68,7 @@
     <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="{{ route('app-store', ['token' => session('jwt_token')]) }}" class="form-horizontal"
+            <form action="{{ route('role-app-store', ['token' => session('jwt_token')]) }}" class="form-horizontal"
                 method="POST">
                 @csrf
                 <div class="modal-content">
@@ -81,85 +85,43 @@
                                     <div class="card-body">
 
                                         <div class="form-group row">
-                                            <label for="fname"
-                                                class="col-sm-3 text-left control-label col-form-label">Apps
-                                                Name</label>
+                                            <label class="col-sm-3 text-left control-label col-form-label">User</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="fname" name="name"
-                                                    placeholder="First Name Here">
+                                                <select class="select2 form-control custom-select"
+                                                    style="width: 100%; height:36px;" name="user_id">
+                                                    <option selected disabled>Select Name</option>
+                                                    @foreach ($users as $user)
+                                                        <option value="{{ $user->nik }}">{{ $user->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="lname"
-                                                class="col-sm-3 text-left control-label col-form-label">URL</label>
+                                            <label class="col-sm-3 text-left control-label col-form-label">Apps</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="lname" name="url"
-                                                    placeholder="Last Name Here">
+                                                <select class="select2 form-control custom-select"
+                                                    style="width: 100%; height:36px;" name="app_id">
+                                                    <option selected disabled>Select App</option>
+                                                    @foreach ($apps as $app)
+                                                        <option value="{{ $app->id }}">{{ $app->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="lname"
-                                                class="col-sm-3 text-left control-label col-form-label">Color</label>
+                                            <label class="col-sm-3 text-left control-label col-form-label">Role</label>
                                             <div class="col-sm-9">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="danger"
-                                                        name="color" value="danger" required>
-                                                    <label class="custom-control-label" for="danger">Red</label>
-                                                </div>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input"
-                                                        id="customControlValidation2" name="color" value="success"
-                                                        required>
-                                                    <label class="custom-control-label"
-                                                        for="customControlValidation2">Green</label>
-                                                </div>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input"
-                                                        id="customControlValidation3" name="color" value="cyan"
-                                                        required>
-                                                    <label class="custom-control-label"
-                                                        for="customControlValidation3">Blue</label>
-                                                </div>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input"
-                                                        id="customControlValidation1" name="color" value="warning"
-                                                        required>
-                                                    <label class="custom-control-label"
-                                                        for="customControlValidation1">Yellow</label>
-                                                </div>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input"
-                                                        id="customControlValidation2" name="color" value="primary"
-                                                        required>
-                                                    <label class="custom-control-label"
-                                                        for="customControlValidation2">Purple</label>
-                                                </div>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input"
-                                                        id="customControlValidation3" name="color" value="secondary"
-                                                        required>
-                                                    <label class="custom-control-label"
-                                                        for="customControlValidation3">Gray</label>
-                                                </div>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input"
-                                                        id="customControlValidation3" name="color" value="info"
-                                                        required>
-                                                    <label class="custom-control-label"
-                                                        for="customControlValidation3">Navy</label>
-                                                </div>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input"
-                                                        id="customControlValidation3" name="color" value="dark"
-                                                        required>
-                                                    <label class="custom-control-label"
-                                                        for="customControlValidation3">Black</label>
-                                                </div>
+                                                <select class="select2 form-control custom-select"
+                                                    style="width: 100%; height:36px;" name="role">
+                                                    <option selected disabled>Select Role</option>
+                                                    <option>Admin</option>
+                                                    <option>Inputer</option>
+                                                    <option>User</option>
+                                                </select>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -175,11 +137,11 @@
     </div>
 
     {{-- Modal Edit --}}
-    @foreach ($links as $link)
-        <div class="modal fade" id="Modal-edit-{{ $link->id }}" tabindex="-1" role="dialog"
-            aria-labelledby="Modal-edit-{{ $link->id }}" aria-hidden="true">
+    {{-- @foreach ($roles as $role)
+        <div class="modal fade" id="Modal-edit-{{ $role->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="Modal-edit-{{ $role->id }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action="{{ route('app-update', $link->id, ['token' => session('jwt_token')]) }}"
+                <form action="{{ route('app-update', $role->id, ['token' => session('jwt_token')]) }}"
                     class="form-horizontal" method="POST">
                     @csrf
                     @method('PUT')
@@ -202,7 +164,7 @@
                                                     Name</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" id="fname"
-                                                        name="name" value="{{ $link->name }}">
+                                                        name="name" value="{{ $role->name }}">
                                                 </div>
                                             </div>
 
@@ -211,7 +173,7 @@
                                                     class="col-sm-3 text-left control-label col-form-label">URL</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" id="lname"
-                                                        name="url" value="{{ $link->url }}">
+                                                        name="url" value="{{ $role->url }}">
                                                 </div>
                                             </div>
 
@@ -295,10 +257,10 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
 
-        {{-- Modal Delete --}}
-        <div id="Modal-delete-{{ $link->id }}" class="modal fade" tabindex="-1" role="dialog"
+    {{-- Modal Delete --}}
+    {{-- <div id="Modal-delete-{{ $link->id }}" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="Modal-delete-{{ $link->id }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -320,8 +282,8 @@
                     </form>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-    @endforeach
+        </div><!-- /.modal --> --}}
+    {{-- @endforeach --}}
 
 
     <script>

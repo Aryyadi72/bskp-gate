@@ -6,18 +6,25 @@ use App\Models\AppLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AppLinkController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $title = 'List Aplikasi';
         $links = AppLink::all();
+        $token = $request->query('token');
+        if (JWTAuth::setToken($token)->check()) {
+            $request->session()->put('jwt_token', $token);
+        }
         return view('app-links/index', compact('links', 'title'));
     }
 
     public function store(Request $request)
     {
+        $token = session('jwt_token');
+
         $request->validate([
             'name' => 'required|string|max:255',
             'url' => 'required|url',
@@ -31,15 +38,19 @@ class AppLinkController extends Controller
 
         if ($appSave) {
             toastr()->closeOnHover(true)->closeDuration(10)->success('Your Post as been submited!');
-            return redirect()->route('app-index');
+            // return redirect()->route('app-index');
+            return redirect()->route('app-index', ['token' => $token]);
         } else {
             toastr()->closeOnHover(true)->closeDuration(10)->error('Your Post not submited!');
-            return redirect()->route('app-index');
+            // return redirect()->route('app-index');
+            return redirect()->route('app-index', ['token' => $token]);
         }
     }
 
     public function update(Request $request, $id)
     {
+        $token = session('jwt_token');
+
         $request->validate([
             'name' => 'required|string|max:255',
             'url' => 'required|url',
@@ -56,25 +67,31 @@ class AppLinkController extends Controller
             'color' => $request->color,
         ])) {
             toastr()->closeOnHover(true)->closeDuration(10)->success('Your Post as been edited!');
-            return redirect()->route('app-index');
+            return redirect()->route('app-index', ['token' => $token]);
         } else {
             toastr()->closeOnHover(true)->closeDuration(10)->error('Failed to edit your Post');
-            return redirect()->route('app-index');
+            return redirect()->route('app-index', ['token' => $token]);
         }
     }
 
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        $data = AppLink::find($id);
+        $token = $request->input('token');
 
-        $appDel = $data->delete();
+        if ($token && JWTAuth::setToken($token)->check()) {
+            // Lanjutkan dengan penghapusan
+            $appLink = AppLink::find($id);
 
-        if ($appDel) {
-            toastr()->closeOnHover(true)->closeDuration(10)->success('Your Post as been deleted!');
-            return redirect()->route('app-index');
-        } else {
-            toastr()->closeOnHover(true)->closeDuration(10)->error('Failed to delete your Post');
-            return redirect()->route('app-index');
+            if ($appLink) {
+                $appLink->delete();
+                toastr()->closeOnHover(true)->closeDuration(10)->success('Your Post as been deleted!');
+            } else {
+                toastr()->closeOnHover(true)->closeDuration(10)->error('Failed to delete your Post');
+            }
+
+            return redirect()->route('app-index', ['token' => $token]);
         }
+
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 }

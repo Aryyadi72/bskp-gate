@@ -16,21 +16,28 @@
                 </li>
 
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('main-app') }}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                            class="hide-menu">Dashboard</span></a></li>
+                        href="{{ route('main-app', ['token' => session('jwt_token')]) }}" aria-expanded="false"><i
+                            class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
 
                 @if (auth()->user()->dept == 'IT')
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            href="{{ route('app-index') }}" aria-expanded="false"><i class="mdi mdi-apps"></i><span
-                                class="hide-menu">App</span></a></li>
+                            href="{{ route('app-index', ['token' => session('jwt_token')]) }}" aria-expanded="false"><i
+                                class="mdi mdi-apps"></i><span class="hide-menu">App</span></a>
+                    </li>
 
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            href="{{ route('log-index') }}" aria-expanded="false"><i
+                            href="{{ route('log-index', ['token' => session('jwt_token')]) }}" aria-expanded="false"><i
                                 class="mdi mdi-account-alert"></i><span class="hide-menu">Activity Log</span></a></li>
 
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            href="{{ route('user-index') }}" aria-expanded="false"><i
+                            href="{{ route('user-index', ['token' => session('jwt_token')]) }}" aria-expanded="false"><i
                                 class="mdi mdi-account-multiple"></i><span class="hide-menu">User Account</span></a>
+                    </li>
+
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('role-app-index', ['token' => session('jwt_token')]) }}"
+                            aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">User
+                                Role</span></a>
                     </li>
                 @endif
 
