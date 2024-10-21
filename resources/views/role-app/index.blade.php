@@ -90,8 +90,8 @@
                                                 <select class="select2 form-control custom-select"
                                                     style="width: 100%; height:36px;" name="user_id">
                                                     <option selected disabled>Select Name</option>
-                                                    @foreach ($users as $user)
-                                                        <option value="{{ $user->nik }}">{{ $user->name }}</option>
+                                                    @foreach ($listUsersAdd as $user)
+                                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -103,7 +103,7 @@
                                                 <select class="select2 form-control custom-select"
                                                     style="width: 100%; height:36px;" name="app_id">
                                                     <option selected disabled>Select App</option>
-                                                    @foreach ($apps as $app)
+                                                    @foreach ($listAppsAdd as $app)
                                                         <option value="{{ $app->id }}">{{ $app->name }}</option>
                                                     @endforeach
                                                 </select>
@@ -116,12 +116,13 @@
                                                 <select class="select2 form-control custom-select"
                                                     style="width: 100%; height:36px;" name="role">
                                                     <option selected disabled>Select Role</option>
-                                                    <option>Admin</option>
-                                                    <option>Inputer</option>
-                                                    <option>User</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="Inputer">Inputer</option>
+                                                    <option value="User">User</option>
                                                 </select>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -137,14 +138,15 @@
     </div>
 
     {{-- Modal Edit --}}
-    {{-- @foreach ($roles as $role)
-        <div class="modal fade" id="Modal-edit-{{ $role->id }}" tabindex="-1" role="dialog"
-            aria-labelledby="Modal-edit-{{ $role->id }}" aria-hidden="true">
+    @foreach ($roles as $role)
+        <div class="modal fade" id="Modal-edit-{{ $role->roleid }}" tabindex="-1" role="dialog"
+            aria-labelledby="Modal-edit-{{ $role->roleid }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action="{{ route('app-update', $role->id, ['token' => session('jwt_token')]) }}"
+                <form action="{{ route('role-app-update', ['roleid' => $role->roleid, 'token' => session('jwt_token')]) }}"
                     class="form-horizontal" method="POST">
                     @csrf
                     @method('PUT')
+
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Input Aplikasi</h5>
@@ -159,92 +161,51 @@
                                         <div class="card-body">
 
                                             <div class="form-group row">
-                                                <label for="fname"
-                                                    class="col-sm-3 text-left control-label col-form-label">Apps
-                                                    Name</label>
+                                                <label class="col-sm-3 text-left control-label col-form-label">User</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="fname"
-                                                        name="name" value="{{ $role->name }}">
+                                                    <select class="select2 form-control custom-select"
+                                                        style="width: 100%; height:36px;" name="user_id">
+                                                        @foreach ($lisUsersUpdate as $user)
+                                                            <option
+                                                                value="{{ $user->id }} {{ $user->id == $role->user_id ? 'selected' : '' }}">
+                                                                {{ $user->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="lname"
-                                                    class="col-sm-3 text-left control-label col-form-label">URL</label>
+                                                <label class="col-sm-3 text-left control-label col-form-label">Apps</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="lname"
-                                                        name="url" value="{{ $role->url }}">
+                                                    <select class="select2 form-control custom-select"
+                                                        style="width: 100%; height:36px;" name="app_id">
+                                                        @foreach ($listAppsUpdate as $app)
+                                                            <option
+                                                                value="{{ $app->id }} {{ $app->id == $role->app_id ? 'selected' : '' }}">
+                                                                {{ $app->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="lname"
-                                                    class="col-sm-3 text-left control-label col-form-label">Color</label>
+                                                <label class="col-sm-3 text-left control-label col-form-label">Role</label>
                                                 <div class="col-sm-9">
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input"
-                                                            id="color-danger-{{ $link->id }}" name="color"
-                                                            value="danger"
-                                                            {{ $link->color == 'danger' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label"
-                                                            for="color-danger-{{ $link->id }}">Red</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input"
-                                                            id="color-success-{{ $link->id }}" name="color"
-                                                            value="success"
-                                                            {{ $link->color == 'success' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label"
-                                                            for="color-success-{{ $link->id }}">Green</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input"
-                                                            id="color-cyan-{{ $link->id }}" name="color"
-                                                            value="cyan" {{ $link->color == 'cyan' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label"
-                                                            for="color-cyan-{{ $link->id }}">Blue</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input"
-                                                            id="color-warning-{{ $link->id }}" name="color"
-                                                            value="warning"
-                                                            {{ $link->color == 'warning' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label"
-                                                            for="color-warning-{{ $link->id }}">Yellow</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input"
-                                                            id="color-primary-{{ $link->id }}" name="color"
-                                                            value="primary"
-                                                            {{ $link->color == 'primary' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label"
-                                                            for="color-primary-{{ $link->id }}">Purple</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input"
-                                                            id="color-secondary-{{ $link->id }}" name="color"
-                                                            value="secondary"
-                                                            {{ $link->color == 'secondary' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label"
-                                                            for="color-secondary-{{ $link->id }}">Gray</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input"
-                                                            id="color-info-{{ $link->id }}" name="color"
-                                                            value="info" {{ $link->color == 'info' ? 'checked' : '' }}>
-                                                        <label class="custom-control-label"
-                                                            for="color-info-{{ $link->id }}">Navy</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input"
-                                                            id="color-dark-{{ $link->id }}" name="color"
-                                                            value="dark"
-                                                            {{ $link->color == 'dark' || is_null($link->color) ? 'checked' : '' }}>
-                                                        <label class="custom-control-label"
-                                                            for="color-dark-{{ $link->id }}">Black</label>
-                                                    </div>
+                                                    <select class="select2 form-control custom-select"
+                                                        style="width: 100%; height:36px;" name="role">
+                                                        <option value="Admin"
+                                                            {{ $role->role == 'Admin' ? 'selected' : '' }}>Admin</option>
+                                                        <option value="Inputer"
+                                                            {{ $role->role == 'Inputer' ? 'selected' : '' }}>Inputer
+                                                        </option>
+                                                        <option value="User"
+                                                            {{ $role->role == 'User' ? 'selected' : '' }}>User</option>
+                                                    </select>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -257,11 +218,11 @@
                     </div>
                 </form>
             </div>
-        </div> --}}
+        </div>
 
-    {{-- Modal Delete --}}
-    {{-- <div id="Modal-delete-{{ $link->id }}" class="modal fade" tabindex="-1" role="dialog"
-            aria-labelledby="Modal-delete-{{ $link->id }}" aria-hidden="true">
+        {{-- Modal Delete --}}
+        <div id="Modal-delete-{{ $role->roleid }}" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="Modal-delete-{{ $role->roleid }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header modal-colored-header bg-danger">
@@ -269,10 +230,10 @@
                         </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
-                    <form action="{{ route('app-delete', $link->id) }}" method="POST">
+                    <form action="{{ route('app-delete', $role->roleid) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <input type="hidden" class="form-control" name="id" value="{{ $link->id }}"><br>
+                        <input type="hidden" class="form-control" name="id" value="{{ $role->roleid }}"><br>
                         <p class="mx-3">Apakah anda yakin ingin menghapus data?</p>
                         <input type="hidden" name="token" value="{{ session('jwt_token') }}">
                         <div class="modal-footer">
@@ -282,8 +243,8 @@
                     </form>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
-        </div><!-- /.modal --> --}}
-    {{-- @endforeach --}}
+        </div><!-- /.modal -->
+    @endforeach
 
 
     <script>

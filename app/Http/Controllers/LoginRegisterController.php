@@ -68,7 +68,9 @@ class LoginRegisterController extends Controller
                 $ipAddress = $request->ip();
                 Mail::to($user->email)->send(new ActiveLoginNotification($user->nik, $user->email, now(), $ipAddress, $user->name));
                 toastr()->closeOnHover(true)->closeDuration(10)->success('Login Berhasil!!!');
-                return redirect()->route('main-app');
+                $token = JWTAuth::fromUser(Auth::user());
+                $request->session()->put('jwt_token', $token);
+                return redirect()->route('main-app', ['token' => $token]);
             }
 
             $pendingOtp = LogActivity::where('nik', $user->nik)
@@ -95,8 +97,8 @@ class LoginRegisterController extends Controller
                 'otp_code' => $otp,
                 'otp_encrypt' => $otpEncrypted,
                 'otp_valid_start' => now(),
-                'otp_valid_until' => now()->addMinutes(1),
-                // 'otp_valid_until' => now()->addDays(1),
+                // 'otp_valid_until' => now()->addMinutes(1),
+                'otp_valid_until' => now()->addDays(1),
             ]);
 
             $data = [
@@ -104,8 +106,8 @@ class LoginRegisterController extends Controller
                 'nik' => $getUserData->nik,
                 'name' => $getUserData->name,
                 'email' => $getUserData->email,
-                'otp_valid_until' => now()->addMinutes(1)->format('d-m-Y H:i'),
-                // 'otp_valid_until' => now()->addDays(1)->format('d-m-Y H:i'),
+                // 'otp_valid_until' => now()->addMinutes(1)->format('d-m-Y H:i'),
+                'otp_valid_until' => now()->addDays(1)->format('d-m-Y H:i'),
             ];
 
             Mail::to($user->email)->send(new OTPMail($data));
@@ -139,14 +141,9 @@ class LoginRegisterController extends Controller
                 ]);
 
                 $token = JWTAuth::fromUser(Auth::user());
-
                 $request->session()->put('jwt_token', $token);
 
-                // Jika menggunakan route ini tidak error
                 return redirect()->route('main-app', ['token' => $token]);
-
-                // Sebalikya jika menggunakan route ini terjadi 401
-                // return redirect()->route('main-app')->with(['token' => $token, 'message' => 'OTP verified successfully.']);
 
             } else {
                 return back()->withErrors(['otp' => 'OTP is incorrect.']);

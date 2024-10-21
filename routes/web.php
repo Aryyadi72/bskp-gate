@@ -34,7 +34,8 @@ Route::group(['middleware' => ['jwt.auth']], function() {
 
     Route::get('/role-app-index', [RoleAppController::class, 'index'])->name('role-app-index');
     Route::post('/role-app-store', [RoleAppController::class, 'store'])->name('role-app-store');
-    Route::put('/role-app-update/{id}', [RoleAppController::class, 'update'])->name('role-app-update');
+    Route::put('/app/update/{roleid}/{token}', [RoleAppController::class, 'update'])->name('role-app-update');
+    // Route::put('/role-app-update/{id}', [RoleAppController::class, 'update'])->name('role-app-update');
     Route::delete('/role-app-delete/{id}', [RoleAppController::class, 'destroy'])->name('role-app-delete');
 });
 
