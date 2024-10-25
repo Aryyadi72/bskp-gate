@@ -41,6 +41,10 @@
                     </li>
                 @endif
 
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
+                        aria-expanded="false"><i class="mdi mdi-newspaper"></i><span class="hide-menu">News</span></a>
+                </li>
+
                 <li class="sidebar-item">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

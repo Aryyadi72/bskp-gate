@@ -7,20 +7,105 @@
     <div
         class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
         <div class="w-full h-100">
-            <h1 class="text-xl font-bold">BSKP-GATE Register</h1>
-            <h1 class="text-xl md:text-2xl font-bold leading-tight mt-12">
+            <h1 class="text-xl md:text-2xl font-bold leading-tight mb-3">
                 Create account
             </h1>
 
-            <form class="mt-6" action="{{ route('register.submit') }}" method="POST"
+            <form class="mt-1" action="{{ route('register.submit') }}" method="POST"
                 onsubmit="return validateRegisterForm()">
                 @csrf
                 <div>
+                    <label class="block text-gray-700">NIK</label>
+                    <input type="text" name="nik" value="{{ old('nik') }}" id="" placeholder="Enter NIK"
+                        class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                        autofocus autocomplete required />
+                </div>
+
+                <div class="mt-4">
                     <label class="block text-gray-700">Name</label>
                     <input type="text" name="name" value="{{ old('name') }}" id="" placeholder="Enter Name"
                         class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                         autofocus autocomplete required />
                 </div>
+
+                {{-- <div class="mt-4">
+                    <label for="options" class="block text-gray-700">Status</label>
+                    <select id="options" name="options"
+                        class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
+                        <option selected disabled>Select Status</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Staff">Staff</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Contract BSKP">Contract BSKP</option>
+                    </select>
+                </div> --}}
+
+                {{-- <div class="mt-4">
+                    <label for="options" class="block text-gray-700">Dept</label>
+                    <select id="options" name="options"
+                        class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
+                        <option selected disabled>Select Dept</option>
+                        <option value="Acc & Fin">Acc & Fin</option>
+                        <option value="BSKP">BSKP</option>
+                        <option value="Factory">Factory</option>
+                        <option value="FAD">FAD</option>
+                        <option value="FSD">FSD</option>
+                        <option value="GA">GA</option>
+                        <option value="HR Legal">HR Legal</option>
+                        <option value="HSE & DP">HSE & DP</option>
+                        <option value="I/A">I/A</option>
+                        <option value="I/B">I/B</option>
+                        <option value="I/C">I/C</option>
+                        <option value="II/D">II/D</option>
+                        <option value="II/E">II/E</option>
+                        <option value="II/F">II/F</option>
+                        <option value="IT">IT</option>
+                        <option value="QA & QM">QA & QM</option>
+                        <option value="Security">Security</option>
+                        <option value="Workshop">Workshop</option>
+                    </select>
+                </div> --}}
+
+                {{-- <div class="mt-4">
+                    <label for="options" class="block text-gray-700">Jabatan</label>
+                    <select id="options" name="options"
+                        class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
+                        <option selected disabled>Select Jabatan</option>
+                        <option value="Adm A">Adm A</option>
+                        <option value="Adm B">Adm B</option>
+                        <option value="Asst Mng">Asst Mng</option>
+                        <option value="Asst Mng Trainee">Asst Mng Trainee</option>
+                        <option value="Cashier">Cashier</option>
+                        <option value="Clerk 1">Clerk 1</option>
+                        <option value="Clerk 2">Clerk 2</option>
+                        <option value="CS">CS</option>
+                        <option value="Dir">Dir</option>
+                        <option value="Dvr">Dvr</option>
+                        <option value="Dvr Mng">Dvr Mng</option>
+                        <option value="HM">HM</option>
+                        <option value="Insp">Insp</option>
+                        <option value="Inst">Inst</option>
+                        <option value="Krani">Krani</option>
+                        <option value="Mdr Maint">Mdr Maint</option>
+                        <option value="Mdr Tap">Mdr Tap</option>
+                        <option value="Mech">Mech</option>
+                        <option value="Mng">Mng</option>
+                        <option value="Opr">Opr</option>
+                        <option value="PD">PD</option>
+                        <option value="Perawat">Perawat</option>
+                        <option value="Pgs Lab">Pgs Lab</option>
+                        <option value="Smk Kpr">Smk Kpr</option>
+                        <option value="Spv">Spv</option>
+                        <option value="Tapper">Tapper</option>
+                        <option value="W Grad">W Grad</option>
+                        <option value="W Mill">W Mill</option>
+                        <option value="W Proc">W Proc</option>
+                        <option value="W QCD">W QCD</option>
+                        <option value="W WWTP">W WWTP</option>
+                        <option value="Worker">Worker</option>
+                    </select>
+                </div> --}}
 
                 <div class="mt-4">
                     <label class="block text-gray-700">Email Address</label>

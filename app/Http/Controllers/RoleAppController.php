@@ -13,7 +13,6 @@ class RoleAppController extends Controller
     public function index()
     {
         $title = 'Role App';
-        // $roles = RoleApp::all();
         $roles = DB::table('role_apps')
             ->join('users', 'role_apps.user_id', '=', 'users.id')
             ->join('app_links', 'role_apps.app_id', '=', 'app_links.id')
@@ -28,7 +27,6 @@ class RoleAppController extends Controller
                 'role_apps.role',
                 'role_apps.id as roleid'
             )
-            // ->sortBy('users.name')
             ->get();
         $listUsersAdd = User::all()->sortBy('name');
         $listAppsAdd = AppLink::all()->sortBy('name');

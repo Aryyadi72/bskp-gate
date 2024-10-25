@@ -166,8 +166,12 @@
                                                     <select class="select2 form-control custom-select"
                                                         style="width: 100%; height:36px;" name="user_id">
                                                         @foreach ($lisUsersUpdate as $user)
-                                                            <option
+                                                            {{-- <option
                                                                 value="{{ $user->id }} {{ $user->id == $role->user_id ? 'selected' : '' }}">
+                                                                {{ $user->name }}
+                                                            </option> --}}
+                                                            <option value="{{ $user->id }}"
+                                                                {{ $user->id == $role->user_id ? 'selected' : '' }}>
                                                                 {{ $user->name }}
                                                             </option>
                                                         @endforeach
@@ -181,8 +185,12 @@
                                                     <select class="select2 form-control custom-select"
                                                         style="width: 100%; height:36px;" name="app_id">
                                                         @foreach ($listAppsUpdate as $app)
-                                                            <option
+                                                            {{-- <option
                                                                 value="{{ $app->id }} {{ $app->id == $role->app_id ? 'selected' : '' }}">
+                                                                {{ $app->name }}
+                                                            </option> --}}
+                                                            <option value="{{ $app->id }}"
+                                                                {{ $app->id == $role->app_id ? 'selected' : '' }}>
                                                                 {{ $app->name }}
                                                             </option>
                                                         @endforeach

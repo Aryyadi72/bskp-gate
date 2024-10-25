@@ -59,7 +59,9 @@ class User extends Authenticatable implements JWTSubject
 
     public function getJWTCustomClaims()
     {
-        $roles = $this->roleAppUser()->pluck('role')->toArray();
+        // $roles = $this->roleAppUser()->pluck('role')->toArray();
+        $roles = $this->roleApps()->with('user')->get()->toArray();
+        // $roles = $this->roleAppUser()->get()->toArray();
 
         return [
             'roles' => $roles,
@@ -76,8 +78,8 @@ class User extends Authenticatable implements JWTSubject
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    public function roleAppUser()
-{
-    return $this->hasMany(RoleApp::class);
-}
+    public function roleApps()
+    {
+        return $this->hasMany(RoleApp::class);
+    }
 }
