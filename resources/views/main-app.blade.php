@@ -25,7 +25,7 @@
         @endphp
         <div class="row">
             @foreach ($links as $link)
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-2">
                     <div class="card card-hover">
                         <a href="{{ $link->url }}?token={{ session('jwt_token') }}" target="_blank"
                             title="{{ $link->slug }}">
